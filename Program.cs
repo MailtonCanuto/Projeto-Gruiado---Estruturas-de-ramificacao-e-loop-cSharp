@@ -110,7 +110,6 @@ do
     {
         case "1":
             // List all of our current pet information
-            Console.WriteLine("");
             for (int i =0; i < maxPets; i++)
             {
                 if (ourAnimals[i, 0] != "ID #: ") ;
