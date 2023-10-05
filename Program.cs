@@ -112,7 +112,7 @@ do
             // List all of our current pet information
             for (int i =0; i < maxPets; i++)
             {
-                if (ourAnimals[i, 0] != "ID #: ") ;
+                if (ourAnimals[i, 0] != "ID #: ");
                 {
                     Console.WriteLine();
                     for (int j = 0; j < 6; j++)
@@ -128,9 +128,144 @@ do
 
         case "2":
             // Add a new animal friend to the ourAnimals array
-            Console.WriteLine("this app feature is coming soon - please check back to see progress.");
-            Console.WriteLine("Press the Enter key to continue.");
-            readResult = Console.ReadLine();
+            string anotherPet = "y";
+            int petCount = 0;
+            
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    petCount += 1;
+                }
+            }
+            if (petCount < maxPets)
+            {
+                Console.WriteLine($"We currently have {petCount} pets that need homes. We can manage {(maxPets - petCount)} more.");
+            }
+
+            // Pegar a especie do animal 
+            bool validEntry = false;
+
+            do
+            {
+                Console.WriteLine("\n\rEnter 'dog' or 'cat' to begin a new entry");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalSpecies = readResult.ToLower();
+                    if (animalSpecies != "dog" && animalSpecies != "cat")
+                    {
+                        Console.WriteLine(animalSpecies);
+                        validEntry = false;
+                    }
+                    else
+                    {
+                        validEntry = true;
+                    }
+                }
+            } while (validEntry == false);
+
+            // pegar a ID number do animal - for example C1, C2, D3 (for Cat 1, Cat 2, Dog 3)
+            animalID = animalSpecies.Substring(0, 1) + (petCount + 1).ToString();
+
+            // criando e validando a idade do animal. 
+            do
+            {
+                int petAge;
+                Console.WriteLine("Entre com a idade do Pet ou ? para indefinido.");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalAge = readResult;
+                    if (animalAge != "?")
+                    {
+                        validEntry = int.TryParse(animalAge, out petAge);
+                    }
+                    else
+                    {
+                        validEntry = true;
+                    }
+                }
+            } while (validEntry == false);
+
+            // pegando a descricao fisica do animal
+            do
+            {
+                Console.WriteLine("Entre com a descrição física do animal.");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalPhysicalDescription = readResult.ToLower();
+                    if ((animalPhysicalDescription == ""))
+                    {
+                        animalPhysicalDescription = "blank";
+                    }
+                }
+            } while (animalPhysicalDescription == "");
+
+            // Pegando a personalidade do pet - animalPersonalityDescription can be blank.
+            do
+            {
+                Console.WriteLine("Entre com a descrição da personalidade do animal.");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalPersonalityDescription = readResult.ToLower();
+                    if ((animalPersonalityDescription == ""))
+                    {
+                        animalPersonalityDescription = "blank";
+                    }
+                }
+            } while (animalPersonalityDescription == "");
+
+            // Pegando o apelido do animal. animalNickname can be blank.
+            do
+            {
+                Console.WriteLine("Entre com o apelido do animal.");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    animalNickname = readResult.ToLower();
+                    if ((animalNickname == ""))
+                    {
+                        animalNickname = "blank";
+                    }
+                }
+            } while (animalNickname == "");
+
+            // Armazenando os dados do animal
+            ourAnimals[petCount, 0] = "ID #: " + animalID;
+            ourAnimals[petCount, 1] = "Species: " + animalSpecies;
+            ourAnimals[petCount, 2] = "Age: " + animalAge;
+            ourAnimals[petCount, 3] = "Nickname: " + animalNickname;
+            ourAnimals[petCount, 4] = "Physical description: " + animalPhysicalDescription;
+            ourAnimals[petCount, 5] = "Personality: " + animalPersonalityDescription;
+
+            while ((anotherPet == "y") && (petCount < maxPets))
+            {
+                petCount ++;
+
+                if (petCount < maxPets)
+                {
+                    Console.WriteLine("Do you want to enter info for another pet (y/n)");
+                    do
+                    {
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            anotherPet = readResult.ToLower();
+                        }
+                    } while ((anotherPet != "y") && (anotherPet != "n"));
+                }
+             }
+
+            if (petCount >= maxPets)
+            {
+                Console.WriteLine("We have reached our limit on the number of pets that we can manage.");
+                Console.WriteLine("Press the Enter key to continue.");
+                readResult = Console.ReadLine();
+            }
+
             break;
 
         case "3":
