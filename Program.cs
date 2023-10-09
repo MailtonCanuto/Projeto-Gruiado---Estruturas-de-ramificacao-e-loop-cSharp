@@ -1,4 +1,4 @@
-// the ourAnimals array will store the following: 
+// a matriz ourAnimals armazenará o seguinte:
 string animalSpecies = "";
 string animalID = "";
 string animalAge = "";
@@ -6,18 +6,18 @@ string animalPhysicalDescription = "";
 string animalPersonalityDescription = "";
 string animalNickname = "";
 
-// variables that support data entry
+// variáveis que dão suporte à entrada de dados
 int maxPets = 8;
 string? readResult;
 string menuSelection = "";
 int petAge = 0;
 
-// array used to store runtime data, there is no persisted data
+// matriz usada para armazenar dados de tempo de execução, não há dados persistentes
 string[,] ourAnimals = new string[maxPets, 6];
 
-// TODO: Convert the if-elseif-else construct to a switch statement
+// TODO: Converter a construção if-elseif-else em uma instrução switch
 
-// create some initial ourAnimals array entries
+// criar algumas entradas iniciais da matriz ourAnimals
 for (int i = 0; i < maxPets; i++)
 {
     switch (i)
@@ -69,31 +69,31 @@ for (int i = 0; i < maxPets; i++)
     }
     
     ourAnimals[i, 0] = "ID #: " + animalID;
-    ourAnimals[i, 1] = "Species: " + animalSpecies;
-    ourAnimals[i, 2] = "Age: " + animalAge;
-    ourAnimals[i, 3] = "Nickname: " + animalNickname;
+    ourAnimals[i, 1] = "Espécie: " + animalSpecies;
+    ourAnimals[i, 2] = "Idade: " + animalAge;
+    ourAnimals[i, 3] = "Apelido: " + animalNickname;
     ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
     ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
 }
 
 do
 {
-
     // display the top-level menu options
 
     Console.Clear();
 
-    Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
-    Console.WriteLine(" 1. List all of our current pet information");
-    Console.WriteLine(" 2. Add a new animal friend to the ourAnimals array");
-    Console.WriteLine(" 3. Ensure animal ages and physical descriptions are complete");
-    Console.WriteLine(" 4. Ensure animal nicknames and personality descriptions are complete");
-    Console.WriteLine(" 5. Edit an animal’s age");
-    Console.WriteLine(" 6. Edit an animal’s personality description");
-    Console.WriteLine(" 7. Display all cats with a specified characteristic");
-    Console.WriteLine(" 8. Display all dogs with a specified characteristic");
+    Console.WriteLine("Bem-vindo ao aplicativo PetFriends da Contoso. Suas opções de menu principal são:");
     Console.WriteLine();
-    Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
+    Console.WriteLine(" 1. Listar todas as informações atuais sobre animais de estimação");
+    Console.WriteLine(" 2. Atribuir valores aos campos da matriz ourAnimals");
+    Console.WriteLine(" 3. Verificar se os dados de idade e descrição física dos animais estão completos");
+    Console.WriteLine(" 4. Verificar se os dados de apelido e descrição de personalidade dos animais estão completos");
+    Console.WriteLine(" 5. Editar a idade do animal");
+    Console.WriteLine(" 6. Editar a descrição de personalidade do animal");
+    Console.WriteLine(" 7. Exibir todos os gatos com uma característica especificada");
+    Console.WriteLine(" 8. Exibir todos os cães com uma característica especificada");
+    Console.WriteLine();
+    Console.WriteLine("Digite o número da seleção (ou digite Sair para sair do programa)");
 
     readResult = Console.ReadLine();
     if (readResult != null)
@@ -128,7 +128,7 @@ do
             break;
 
         case "2":
-            // Add a new animal friend to the ourAnimals array
+            // Adicionando outro animal a matrix
             string anotherPet = "y";
             int petCount = 0;
             
@@ -149,12 +149,12 @@ do
 
             do
             {
-                Console.WriteLine("\n\rEnter 'dog' or 'cat' to begin a new entry");
+                Console.WriteLine("\n\rEntre com 'Cachorro' ou 'Gato' para uma nova entrada");
                 readResult = Console.ReadLine();
                 if (readResult != null)
                 {
                     animalSpecies = readResult.ToLower();
-                    if (animalSpecies != "dog" && animalSpecies != "cat")
+                    if (animalSpecies != "Cachorro" && animalSpecies != "Gato")
                     {
                         Console.WriteLine(animalSpecies);
                         validEntry = false;
@@ -168,7 +168,7 @@ do
 
             // pegar a ID number do animal - for example C1, C2, D3 (for Cat 1, Cat 2, Dog 3)
             animalID = animalSpecies.Substring(0, 1) + (petCount + 1).ToString();
-
+           
             // criando e validando a idade do animal. 
             do
             {
@@ -235,11 +235,11 @@ do
 
             // Armazenando os dados do animal
             ourAnimals[petCount, 0] = "ID #: " + animalID;
-            ourAnimals[petCount, 1] = "Species: " + animalSpecies;
-            ourAnimals[petCount, 2] = "Age: " + animalAge;
-            ourAnimals[petCount, 3] = "Nickname: " + animalNickname;
-            ourAnimals[petCount, 4] = "Physical description: " + animalPhysicalDescription;
-            ourAnimals[petCount, 5] = "Personality: " + animalPersonalityDescription;
+            ourAnimals[petCount, 1] = "Especie: " + animalSpecies;
+            ourAnimals[petCount, 2] = "Idade: " + animalAge;
+            ourAnimals[petCount, 3] = "Apelido: " + animalNickname;
+            ourAnimals[petCount, 4] = "Descrição física: " + animalPhysicalDescription;
+            ourAnimals[petCount, 5] = "Personalidade: " + animalPersonalityDescription;
 
             while ((anotherPet == "y") && (petCount < maxPets))
             {
